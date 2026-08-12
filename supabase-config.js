@@ -1,0 +1,3 @@
+// La clave anon es pública por diseño. Nunca pongas aquí la clave service_role.
+window.ESCOMBRERAS_SUPABASE_URL = 'https://oltvbkicpkaiubjarkqg.supabase.co';
+window.ESCOMBRERAS_SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9sdHZia2ljcGthaXViamFya3FnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODY1NTYwMDAsImV4cCI6MjEwMjEzMjAwMH0.zRIymw8ARPM0cLenb83P4dholfxX5qM70oSudy3j01g';

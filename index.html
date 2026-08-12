@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Escombreras | Gestión de disposición</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <section class="auth-screen" id="authScreen">
+    <div class="auth-intro"><a class="brand" href="#"><span class="brand-mark">E</span><span>escombreras</span></a><div><p class="eyebrow">PLATAFORMA DE DISPOSICIÓN</p><h1>La disposición de residuos, conectada.</h1><p>Gestiona obras, disponibilidad y solicitudes desde un solo lugar.</p></div><small>© 2026 Escombreras · Chile</small></div>
+    <form class="login-card" id="loginForm"><p class="eyebrow">ACCESO A LA PLATAFORMA</p><h2>Bienvenido de vuelta</h2><p class="intro">Ingresa para acceder a tu panel.</p><label>Correo electrónico<input id="loginEmail" type="email" autocomplete="email" required></label><label>Contraseña<input id="loginPassword" type="password" autocomplete="current-password" required></label><p class="login-error" id="loginError"></p><button class="primary full" type="submit">Iniciar sesión</button><div class="demo-access"><strong>¿Aún no tienes cuenta?</strong><button type="button" id="showRegister">Crear cuenta de empresa</button></div></form>
+    <form class="login-card" id="registerForm" hidden><p class="eyebrow">REGISTRO INICIAL</p><h2>Crea tu cuenta</h2><p class="intro">Quedará pendiente de activación por un administrador.</p><label>Nombre completo<input id="registerName" required></label><label>Empresa<input id="registerCompany" required></label><label>Correo electrónico<input id="registerEmail" type="email" required></label><label>Contraseña<input id="registerPassword" type="password" minlength="8" required></label><p class="login-error" id="registerError"></p><button class="primary full" type="submit">Crear cuenta</button><div class="demo-access"><button type="button" id="showLogin">Volver al inicio de sesión</button></div></form>
+  </section>
+  <div class="app-shell" id="appShell" hidden>
+    <aside class="sidebar">
+      <a class="brand" href="#"><span class="brand-mark">E</span><span>escombreras</span></a>
+      <p class="workspace" id="roleName">PANEL CONSTRUCTORA</p>
+      <nav class="nav" id="mainNav">
+        <button class="nav-item active" data-view="dashboard"><span>◫</span> Resumen</button>
+        <button class="nav-item" data-view="works"><span>⌑</span> Mis obras</button>
+        <button class="nav-item" data-view="search"><span>⌕</span> Buscar escombreras</button>
+        <button class="nav-item" data-view="requests"><span>↗</span> Solicitudes <b id="pendingBadge">2</b></button>
+        <button class="nav-item" data-view="history"><span>◷</span> Historial</button>
+      </nav>
+      <div class="sidebar-bottom"><button class="nav-item"><span>⚙</span> Configuración</button><button class="profile"><span class="avatar" id="sidebarInitials">CM</span><span><strong id="sidebarUser">Constructora Maipo</strong><small id="sidebarDetail">Empresa verificada</small></span><i>⌄</i></button><button class="logout" id="logoutButton">Cerrar sesión</button></div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar"><button class="mobile-menu">☰</button><div class="crumb" id="breadcrumb">Constructora Maipo <span>/</span> <strong id="pageLabel">Resumen</strong></div><div class="top-actions"><button class="icon-button">⌕</button><button class="icon-button notification">♧<em></em></button><span class="top-avatar" id="topInitials">CM</span></div></header>
+
+      <section id="dashboard" class="view active">
+        <div class="page-heading"><div><p class="eyebrow">MIÉRCOLES, 12 DE AGOSTO</p><h1>Buenos días, Camila.</h1><p class="intro">Aquí tienes el estado de tus operaciones hoy.</p></div><button class="primary" data-action="newRequest">+ Nueva solicitud</button></div>
+        <div class="metric-grid">
+          <article class="metric"><div class="metric-icon blue">⌑</div><span>Obras activas</span><strong>4</strong><small class="up">↑ 1 este mes</small></article>
+          <article class="metric"><div class="metric-icon amber">↗</div><span>Solicitudes pendientes</span><strong id="pendingMetric">2</strong><small>Requieren seguimiento</small></article>
+          <article class="metric"><div class="metric-icon green">◉</div><span>Escombreras disponibles</span><strong id="availableMetric">12</strong><small class="up">↑ 3 cercanas a tus obras</small></article>
+          <article class="metric"><div class="metric-icon purple">▥</div><span>Disposición este mes</span><strong>1.240 <small>m³</small></strong><small>En 38 viajes registrados</small></article>
+        </div>
+        <div class="content-grid"><section class="panel requests-panel"><div class="panel-title"><div><h2>Solicitudes recientes</h2><p>Revisa el avance de tus disposiciones.</p></div><button class="link-button" data-view-link="requests">Ver todas →</button></div><div id="recentRequests" class="request-list"></div></section><section class="panel availability"><div class="panel-title"><div><h2>Disponibilidad cerca de ti</h2><p>Escombreras a menos de 15 km.</p></div><button class="link-button" data-view-link="search">Explorar mapa →</button></div><div id="nearbyList"></div></section></div>
+      </section>
+
+      <section id="search" class="view">
+        <div class="page-heading"><div><p class="eyebrow">RED DE DISPOSICIÓN</p><h1>Buscar escombreras</h1><p class="intro">Encuentra el punto de disposición adecuado para tu obra.</p></div><button class="outline">⌖ Usar ubicación actual</button></div>
+        <div class="search-layout"><aside class="filters panel"><div class="filter-heading"><h3>Filtros</h3><button id="clearFilters">Limpiar</button></div><label>Región<select id="regionFilter"><option value="">Todas las regiones</option><option>Metropolitana</option><option>Valparaíso</option></select></label><label>Comuna<select id="communeFilter"><option value="">Todas las comunas</option><option>San Bernardo</option><option>Maipú</option><option>Quilicura</option><option>Pudahuel</option></select></label><label>Material<select id="materialFilter"><option value="">Todos los materiales</option><option>Tierra</option><option>Escombros</option><option>Hormigón</option><option>Asfalto</option></select></label><label>Estado<select id="statusFilter"><option value="">Cualquier estado</option><option value="open">Abierta</option><option value="limited">Capacidad limitada</option></select></label><label>Capacidad mínima <div class="range-row"><input id="capacityFilter" type="range" min="0" max="20000" step="1000" value="0"><output id="capacityOutput">Sin mínimo</output></div></label></aside><div><div class="results-top"><strong><span id="resultsCount">4</span> escombreras encontradas</strong><select><option>Ordenar: más cercanas</option><option>Mayor capacidad</option></select></div><div id="searchResults" class="result-list"></div></div></div>
+      </section>
+
+      <section id="works" class="view"><div class="page-heading"><div><p class="eyebrow">GESTIÓN DE PROYECTOS</p><h1>Mis obras</h1><p class="intro">Administra las obras y sus necesidades de disposición.</p></div><button class="primary" id="addWork">+ Nueva obra</button></div><div id="worksGrid" class="works-grid"></div></section>
+      <section id="requests" class="view"><div class="page-heading"><div><p class="eyebrow">OPERACIONES</p><h1>Solicitudes</h1><p class="intro">Haz seguimiento de cada solicitud enviada a una escombrera.</p></div><button class="primary" data-action="newRequest">+ Nueva solicitud</button></div><section class="panel table-panel"><div class="tabs"><button class="active">Todas</button><button>Pendientes</button><button>Aceptadas</button><button>Completadas</button></div><div class="table-wrap"><table><thead><tr><th>ESCOMBRERA</th><th>OBRA</th><th>MATERIAL</th><th>VOLUMEN</th><th>FECHA</th><th>ESTADO</th><th></th></tr></thead><tbody id="requestTable"></tbody></table></div></section></section>
+      <section id="history" class="view"><div class="page-heading"><div><p class="eyebrow">TRAZABILIDAD</p><h1>Historial</h1><p class="intro">Tus operaciones y disposiciones completadas.</p></div></div><section class="empty-state panel"><div>◷</div><h2>Tu historial estará disponible aquí</h2><p>Cuando completes una solicitud, podrás consultar sus viajes y comprobantes de disposición.</p></section></section>
+      <section id="adminUsers" class="view"><div class="page-heading"><div><p class="eyebrow">ADMINISTRACIÓN DE PLATAFORMA</p><h1>Usuarios y roles</h1><p class="intro">Asigna el tipo de cuenta, revisa empresas y activa o suspende accesos.</p></div><button class="primary" id="addUser">+ Invitar usuario</button></div><section class="panel table-panel"><div class="table-wrap"><table><thead><tr><th>USUARIO</th><th>EMPRESA</th><th>ROL</th><th>ESTADO</th><th>ÚLTIMO ACCESO</th><th>ACCIÓN</th></tr></thead><tbody id="usersTable"></tbody></table></div></section></section>
+      <section id="siteRequests" class="view"><div class="page-heading"><div><p class="eyebrow">OPERACIÓN DE ESCOMBRERA</p><h1>Solicitudes recibidas</h1><p class="intro">Acepta o rechaza solicitudes antes de coordinar la recepción.</p></div></div><section class="panel table-panel"><div class="table-wrap"><table><thead><tr><th>CONSTRUCTORA</th><th>OBRA</th><th>MATERIAL</th><th>VOLUMEN</th><th>FECHA</th><th>ESTADO</th><th>DECISIÓN</th></tr></thead><tbody id="siteRequestTable"></tbody></table></div></section></section>
+    </main>
+  </div>
+  <div class="modal-backdrop" id="modal"><form class="modal" id="requestForm"><button type="button" class="close" id="closeModal">×</button><p class="eyebrow">NUEVA SOLICITUD</p><h2>Solicitar disposición</h2><p class="intro">Envía una solicitud a la escombrera seleccionada.</p><label>Escombrera<select id="requestSite" required></select></label><label>Obra<select id="requestWork" required></select></label><div class="form-row"><label>Material<select id="requestMaterial"><option>Tierra</option><option>Escombros</option><option>Hormigón</option><option>Asfalto</option></select></label><label>Cantidad estimada<input id="requestAmount" type="number" min="1" value="120" required></label></div><div class="form-row"><label>Unidad<select><option>m³</option><option>toneladas</option></select></label><label>Fecha estimada<input type="date" required></label></div><label>Observaciones<textarea placeholder="Información adicional para la escombrera"></textarea></label><button class="primary full" type="submit">Enviar solicitud</button></form></div>
+  <div id="toast" class="toast">Solicitud enviada correctamente</div>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="supabase-config.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
